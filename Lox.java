@@ -1,9 +1,9 @@
 package com.craftinginterpreters.lox;
 
 import java.io.BufferedReader;
-import java.io.IOExceptions;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.Chartset;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -14,12 +14,17 @@ public class Lox {
       System.out.println("Usage: jlox [script]");
       System.exit(64);
     } else if (args.length == 1) {
-      System.out.println("equals");
-      // runFile(args[0]); 
+      // System.out.println("equals");
+      runFile(args[0]); 
     } else {
       System.out.println("last resort");
       // runPrompt();
     }
+  }
+  private static void runFile(String path) throws IOException {
+    byte[] bytes = Files.readAllBytes(Paths.get(path));
+    System.out.println(bytes);
+    // run(new String(bytes, Charset.defaultCharset()));
   }
 }
 
